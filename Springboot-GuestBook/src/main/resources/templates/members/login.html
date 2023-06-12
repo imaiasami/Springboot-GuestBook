@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+<link rel="stylesheet" href="/css/default.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+function formCheck() {
+	//alert("폼 유효성 체크");
+	// 아이디 길이 체크 (4~20)
+	let id = $("#member_id").val();
+	if(id.length < 4 || id.length > 20) {
+		alert("크기가 4에서 20 사이여야 합니다.");
+		return false;
+	}
+	// 패스워드 길이 체크 (4~20)
+	let password = $("#password").val();
+	if(password.length < 4 || password.length > 20) {
+		alert("크기가 4에서 20 사이여야 합니다.");
+		return false;
+	}
+</script>
+</head>
+<body>
+	<div id="container">
+		<h1>로그인</h1>
+		<form th:action="@{/members/login(redirectURL=${redirectURL})}"
+			method="post" th:object="${member}" onsubmit="return formCheck()">
+			<div th:if="${#fields.hasGlobalErrors()}">
+				<p class="error" th:each="err : ${#fields.globalErrors()}"
+					th:text="${err}"></p>
+			</div>
+			<table>
+				<tr>
+					<th>아이디</th>
+					<td><input type="text" th:field="*{member_id}">
+						<div th:class="error" th:errors="*{member_id}"></div></td>
+				</tr>
+				<tr>
+					<th>패스워드</th>
+					<td><input type="password" th:field="*{password}">
+						<div th:class="error" th:errors="*{password}"></div></td>
+				</tr>
+			</table>
+			<p>
+			<div class="center">
+				<input type="button" onclick="location.href='/'" value="메인으로">
+				<input type="submit" value="로그인"> <input type="reset"
+					value="취소">
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+server:
+  port: 9000
+  servlet:
+    session:
+      tracking-modes:
+      - cookie 
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: guestbook
+    password: 1234
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.example.guestbook.model.entity
+  

@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+#container {
+    margin: auto;
+    width: 800px;
+}
+
+table {
+    margin: auto;
+    width: 800px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.error {
+    color: red;
+}
+
+.bold {
+    font-weight: bold;
+}

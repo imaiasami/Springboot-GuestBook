@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>방명록 작성</title>
+    <link rel="stylesheet" href="/css/default.css">
+</head>
+<body>
+<div id="container">
+    <h1>방명록 작성</h1>
+    <form action="/guestbooks/write" method="post">
+        <table>
+            <tr>
+                <th>작성자</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>내용</th>
+                <td>
+                    <textarea name="contents" cols="80" rows="10"></textarea>
+                </td>
+            </tr>
+        </table>
+        <p>
+        <div class="center">
+            <input type="button" onclick="location.href='/'" value="메인으로">
+            <input type="submit" value="등록하기">
+            <input type="reset" value="취소">
+        </div>
+    </form>
+</div>
+</body>
+</html>

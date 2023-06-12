@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.example.guestbook.repository.GuestBookMapper">
+	<!-- 방명록 등록 -->
+	<insert id="addGuestBook">
+		<selectKey keyProperty="guestbook_id" resultType="long"
+			order="BEFORE">
+			select seq_guestbook.nextval from dual
+		</selectKey>
+		insert into guestbook (
+		guestbook_id,
+		contents,
+		member_id,
+		created_time
+		)
+		values (
+		#{guestbook_id},
+		#{contents},
+		#{member_id},
+		#{sysdate}
+		)
+	</insert>
+
+	<!-- 등록된 방명록 전체 목록 -->
+	<select id="findAllGuestBooks" resultType="guestBook">
+		select * from
+		guestbook
+	</select>
+
+	<!-- 방명록 읽기 -->
+	<select id="findGuestBook" resultType="guestBook">
+		select * from guestbook
+		where guestbook_id = #{guestbook_id}
+	</select>
+
+	<!-- 방명록 수정 -->
+	<update id="updateGuestBook">
+		update guestbook
+		<set>
+			<if test="content != null">content = #{content},</if>
+		</set>
+		where guestbook_id = #{guestbook_id}
+	</update>
+
+	<!-- 방명록 삭제 -->
+	<delete id="deleteGuestBook">
+		delete from guestbook where guestbook_id = #{guestbook_id}
+	</delete>
+</mapper>

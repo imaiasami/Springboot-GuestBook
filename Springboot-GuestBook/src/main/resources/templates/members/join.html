@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<link rel="stylesheet" href="/css/default.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+function formCheck() {
+	//alert("폼 유효성 체크");
+	// 아이디 길이 체크 (4~20)
+	let id = $("#id").val();
+	if(id.length < 4 || id.length > 20) {
+		alert("크기가 4에서 20 사이여야 합니다.");
+		return false;
+	}
+	// 패스워드 길이 체크 (4~20)
+	let password = $("#password").val();
+	if(password.length < 4 || password.length > 20) {
+		alert("크기가 4에서 20 사이여야 합니다.");
+		return false;
+	}
+	// 이름 (공백이 아님)
+	let name = $("#name").val();
+	if(name == "") {
+		alert("공백일 수 없습니다.");
+		return false;
+	}
+}
+</script>
+</head>
+<body>
+	<div id="container">
+		<form action="/members/join" method="post" th:object="${member}"
+			onsubmit="return formCheck()">
+			<h1>회원가입</h1>
+			<div></div>
+			<table>
+				<tr>
+					<th>아이디</th>
+					<td><input type="text" th:field="*{member_id}">
+						<div class="error" th:errors="*{member_id}"></div></td>
+				</tr>
+				<tr>
+					<th>패스워드</th>
+					<td><input type="password" th:field="*{password}">
+						<div class="field-error" th:errors="*{password}"></div></td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td><input type="text" th:field="*{name}">
+						<div class="field-error" th:errors="*{name}"></div></td>
+				</tr>
+			</table>
+			<p>
+			<div class="center">
+				<input type="button" onclick="location.href='/'" value="메인으로">
+				<input type="submit" value="가입하기"> <input type="reset"
+					value="취소">
+			</div>
+		</form>
+	</div>
+</body>
+</html>
